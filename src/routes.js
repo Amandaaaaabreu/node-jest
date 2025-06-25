@@ -10,10 +10,11 @@ routes.get('/users', (request, response ) =>{
 
 
 routes.post('/users',(request, response) => {
-    const body = request.body;
-    console.log(body);
-    return response.json(body);
     
+    const {name} = request.body
+    database.push(name);
+    return response.status(201).json({'mensagem': `Usuário ${name} criado` })
+
 })
 
 
