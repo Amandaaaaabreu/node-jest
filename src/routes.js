@@ -1,22 +1,13 @@
 import {response, Router} from 'express'
+import { usersController } from './controllers/userController.js';
 
 const routes = Router()
 
-const database= ['Amanda']
+routes.get('/users',usersController.listarUsuario )
 
-routes.get('/users', (request, response ) =>{
-    return response.status(200).json(database);
-})
+routes.post('/users', usersController.criarUsuario)
 
-
-routes.post('/users',(request, response) => {
-    
-    const {name} = request.body
-    database.push(name);
-    return response.status(201).json({'mensagem': `Usuário ${name} criado` })
-
-})
-
+export {routes}
 
 
 // STATUS CODE
@@ -36,4 +27,3 @@ routes.post('/users',(request, response) => {
 //PUT/PATCH: Atualizar uma informação existente 
 //DELETE: Deletar uma informação
 
-export {routes}
